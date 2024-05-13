@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import Calculator from '../src/Calculator';
 
 export default function App() {
   const [input, setInput] = useState(0); //보여지는 input 창의 숫자
@@ -11,7 +12,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>calculator</Text>
+      <Calculator />
     </SafeAreaView>
   );
 }
