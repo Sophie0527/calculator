@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -39,9 +39,22 @@ const Button = ({ text, onPress, flex, type, isSelected }) => {
 };
 
 export default () => {
+  const [input, setInput] = useState(0); //보여지는 input 창의 숫자
+  const [currentOperator, setCurrentOperator] = useState(null); //선택된 기호 - 현재 버튼의 보더가 있는 것
+  const [result, setResult] = useState(null); //기호 이전의 input 숫자
+  // 값이 나온 이후('='을 선택한 이후)
+  const [tempInput, setTempInput] = useState(null); //마자막 input의 숫자
+  const [tempOperator, setTempOperator] = useState(null); //마자막 선택한 기호
+
   return (
-    <View style={{ flex: 1, width: 250 }}>
+    <View style={{ flex: 1, width: 250, justifyContent: 'center' }}>
       {/* 결과 */}
+      <InputContainer>
+        <Text style={{ color: '#fff', fontSize: 35, textAlign: 'right' }}>
+          {input}
+        </Text>
+      </InputContainer>
+
       {/* [AC ~ /] */}
       <ButtonContainer>
         <Button type="reset" text="AC" onPress={() => null} flex={3} />
@@ -80,6 +93,14 @@ export default () => {
     </View>
   );
 };
+
+const InputContainer = styled.View`
+  background-color: ${COLOR.RESULT};
+  min-height: 50px;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 10px 5px;
+`;
 
 const ButtonContainer = styled.View`
   flex-direction: row;
